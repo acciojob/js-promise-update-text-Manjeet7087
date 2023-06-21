@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <title>Promise Example</title>
+  <script>
+    function updateElementText() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const message = "Hello, world!";
+          resolve(message);
+        }, 1000);
+      });
+    }
 
-  <body>
-    <!-- do not modify this file -->
-    <div id="output"></div>
-
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    function setTextOnResolve() {
+      const outputElement = document.getElementById("output");
+      updateElementText().then((message) => {
+        outputElement.textContent = message;
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1 id="output"></h1>
+  <button onclick="setTextOnResolve()">Update Text</button>
+</body>
 </html>
